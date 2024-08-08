@@ -1,0 +1,383 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aditya's Memories</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f4f8;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #ff6b6b, #f06595);
+            color: white;
+            padding: 20px 40px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        /* Buttons */
+        .buttons {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .buttons a {
+            padding: 10px 20px;
+            background-color: #fff;
+            color: #ff6b6b;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .buttons a:hover {
+            background-color: #f06595;
+            color: #fff;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .gallery h2 {
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            color: #444;
+        }
+
+        .gallery-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            flex: 1 1 calc(25% - 40px);
+            max-width: calc(25% - 40px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-item .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 15px;
+            font-size: 1.2em;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .gallery-item:hover .caption {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-item {
+                flex: 1 1 calc(50% - 40px);
+                max-width: calc(50% - 40px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-item {
+                flex: 1 1 100%;
+                max-width: 100%;
+            }
+        }
+
+        /* Timeline Section */
+        .timeline {
+            background-color: #fff;
+            padding: 40px 20px;
+        }
+
+        .timeline h2 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            color: #444;
+        }
+
+        .timeline-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-item img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-item .description {
+            flex: 1;
+        }
+
+        .timeline-item .description h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.5em;
+            color: #333;
+        }
+
+        .timeline-item .description p {
+            margin: 0;
+            color: #666;
+        }
+
+        /* Lightbox styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            flex-direction: column;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 80%;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+        }
+
+        .lightbox .caption {
+            margin-top: 10px;
+            font-size: 1.2em;
+            text-align: center;
+        }
+
+        .lightbox:target {
+            display: flex;
+        }
+
+        .lightbox .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 2em;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .lightbox .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2em;
+            color: #fff;
+            text-decoration: none;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .lightbox .prev-btn {
+            left: 20px;
+        }
+
+        .lightbox .next-btn {
+            right: 20px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>Aditya's Memories</h1>
+        <div class="buttons">
+            <a href="index.html">Back to Home</a>
+            <a href="mailto:adityagaikwad@gmail.com">Contact Me</a>
+        </div>
+    </header>
+
+    <!-- Gallery Section -->
+    <section class="gallery">
+        <h2>Photo Gallery</h2>
+        <div class="gallery-container" id="gallery">
+            <!-- Gallery items will be dynamically inserted here -->
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <<section class="timeline">
+        <h2>Memories Timeline</h2>
+        <div class="timeline-container">
+            <div class="timeline-item">
+                <img src="WhatsApp Image 2024-08-08 at 21.22.46.jpeg" alt="Memory 1">
+                <div class="description">
+                    <h3>collage day Day</h3>
+                    <p>collage is a best place to learn many things from differnt people .</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <img src="/Users/adityagaikwad/Desktop/Public/new/WhatsApp Image 2024-08-08 at 23.05.07.jpeg" alt="Memory 2">
+                <div class="description">
+                    <h3>Trip to the Mountains</h3>
+                    <p>A breathtaking experience hiking through the mountains and connecting with nature.</p>
+                </div>
+            </div>
+            <!-- Add more timeline items as needed -->
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <a href="#" class="close-btn">&times;</a>
+        <a href="#" class="nav-btn prev-btn" id="prev-btn">&#10094;</a>
+        <img id="lightbox-img" src="" alt="Lightbox Image">
+        <div class="caption" id="lightbox-caption">Image Caption</div>
+        <a href="#" class="nav-btn next-btn" id="next-btn">&#10095;</a>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Aditya Gaikwad. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const images = [
+            { src: '/Users/adityagaikwad/Desktop/Public/WhatsApp Image 2024-08-08 at 21.22.52.jpeg', caption: 'Morning vibes at parul.' },
+            { src: '/Users/adityagaikwad/Desktop/Public/new/WhatsApp Image 2024-08-08 at 21.22.39.jpeg', caption: 'Visiting temple .' },
+            { src: '/Users/adityagaikwad/Desktop/Public/new/WhatsApp Image 2024-08-08 at 23.05.06.jpeg', caption: 'Boat riding.' },
+            { src: '/Users/adityagaikwad/Desktop/Public/new/WhatsApp Image 2024-08-08 at 21.22.43-2.jpeg', caption: 'peacfull night.' }
+        ];
+
+        const galleryContainer = document.getElementById('gallery');
+        images.forEach((image, index) => {
+            const item = document.createElement('div');
+            item.classList.add('gallery-item');
+            item.innerHTML = `
+                <img src="${image.src}" alt="Image ${index + 1}">
+                <div class="caption">${image.caption}</div>
+            `;
+            item.addEventListener('click', () => openLightbox(index));
+            galleryContainer.appendChild(item);
+        });
+
+        let currentIndex = 0;
+
+        function openLightbox(index) {
+            currentIndex = index;
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxCaption = document.getElementById('lightbox-caption');
+
+            lightboxImg.src = images[index].src;
+            lightboxCaption.textContent = images[index].caption;
+
+            lightbox.style.display = 'flex';
+            window.location.hash = 'lightbox';
+        }
+
+        function navigateLightbox(step) {
+            currentIndex = (currentIndex + step + images.length) % images.length;
+            openLightbox(currentIndex);
+        }
+
+        document.getElementById('prev-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            navigateLightbox(-1);
+        });
+
+        document.getElementById('next-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            navigateLightbox(1);
+        });
+
+        window.addEventListener('hashchange', () => {
+            if (!window.location.hash) {
+                document.getElementById('lightbox').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
