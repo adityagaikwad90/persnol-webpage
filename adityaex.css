@@ -1,72 +1,87 @@
 body {
-  background-color: #333;
+  background: linear-gradient(to right, #ffafbd, #ffc3a0);
+  color: #333;
   font-family: 'Montserrat', sans-serif;
   margin: 0;
   padding: 0;
-  color: #fff;
+  text-align: center;
 }
 
 header {
-  text-align: center;
-  padding: 50px 0;
-  background-color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
 }
 
-.image-container {
-  text-align: center;
+.color {
+  background-color: #f3a683;
+  height: 50px;
+  width: 100%;
 }
 
-.image-container img {
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.image img {
   border-radius: 50%;
+  border: 4px solid #f78fb3;
   height: 150px;
-  width: 150px;
-  border: 5px solid #ffa57d;
   transition: transform 0.3s;
 }
 
-.image-container img:hover {
+.image img:hover {
   transform: scale(1.1);
 }
 
 .name {
   font-family: 'Unbounded', cursive;
-  font-size: 2em;
+  font-size: 50px;
   font-weight: bolder;
+  color: #333;
+  margin-top: 20px;
+  text-shadow: 2px 2px 4px #fff;
+}
+
+.aditya, .hobbies, .anjali {
   margin: 20px 0;
-  color: #ffa57d;
-}
-
-.skills, .hobbies, .about {
-  background-color: #444;
   padding: 20px;
-  border-radius: 10px;
-  margin: 20px auto;
-  max-width: 600px;
-}
-
-.skills h5, .hobbies h5, .about h5 {
-  font-size: 1.2em;
-  margin-bottom: 10px;
-  color: #ffa57d;
-}
-
-.skills p, .hobbies p, .about p {
-  font-size: 1em;
-  margin: 5px 0;
-}
-
-.explore-button {
-  background-color: #ffa57d;
-  border: none;
-  padding: 10px 20px;
-  font-size: 1em;
-  border-radius: 5px;
-  cursor: pointer;
+  background-color: rgba(255, 204, 204, 0.9);
+  border-radius: 15px;
+  width: 80%;
+  color: #333;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   transition: background-color 0.3s;
 }
 
-.explore-button:hover {
-  background-color: #ff7f50;
+.aditya:hover, .hobbies:hover, .anjali:hover {
+  background-color: rgba(255, 133, 102, 0.9);
+}
+
+.button-container {
+  margin-top: 20px;
+}
+
+.explore-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #f78fb3;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  text-decoration: none;
+}
+
+.explore-btn:hover {
+  background-color: #ff6b81;
+  transform: scale(1.1);
 }
 
 .social-links {
@@ -77,27 +92,11 @@ header {
 }
 
 .social-links a {
-  color: white;
+  color: #333;
   font-size: 24px;
   transition: color 0.3s;
 }
 
-.social-links a:hover {
-  color: #c8663c;
-}
-
-.footer {
-  background-color: #444;
-  padding: 20px;
-  text-align: center;
-}
-
-.footer p {
-  margin: 0;
-}
-
-@media (max-width: 768px) {
-  .skills, .hobbies, .about {
-    margin: 20px 10px;
-  }
+social-links a:hover {
+  color: #f78fb3;
 }
