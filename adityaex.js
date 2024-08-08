@@ -1,26 +1,9 @@
-$(document).ready(function() {
-  $(".explore-button").click(function() {
-    $(".about").toggle({
-      bottom: '600px',
-      opacity: '0.5',
-    });
-  });
-
-  $(".explore-button").click(function() {
-    $(".top-container").toggle({
-      left: '20px',
-      opacity: '0.5',
-    });
-  });
-
-  $(".explore-button").click(function() {
-    $(".hobbies").animate({
-      bottom: '50px',
-      opacity: '0.5',
-    });
-  });
-
-  $(".name").click(function() {
-    $(".raw").toggle();
-  });
+// JavaScript for toggling the profile picture and other animations
+$(".explore-btn").on("click", function() {
+  window.location.href = "contact.html";
 });
+
+$(".name").click(function() {
+  $(".profile-pic").toggle();
+});
+
