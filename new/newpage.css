@@ -1,0 +1,97 @@
+body {
+    background: linear-gradient(to right, #ffafbd, #ffc3a0);
+    color: #333;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+  
+  header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .color {
+    background-color: #f3a683;
+    height: 50px;
+    width: 100%;
+  }
+  
+  .center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .contact-header h1 {
+    font-family: 'Unbounded', cursive;
+    font-size: 50px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+  }
+  
+  .info-item {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: rgba(255, 204, 204, 0.9);
+    border-radius: 15px;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .info-item:hover {
+    background-color: rgba(255, 133, 102, 0.9);
+  }
+  
+  .info-item i {
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .info-item a {
+    color: #333;
+    text-decoration: none;
+    font-size: 18px;
+  }
+  
+  .info-item a:hover {
+    text-decoration: underline;
+  }
+  
+  .button-container {
+    margin-top: 20px;
+  }
+  
+  .back-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f78fb3;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    text-decoration: none;
+  }
+  
+  .back-btn:hover {
+    background-color: #ff6b81;
+    transform: scale(1.1);
+  }
+  
